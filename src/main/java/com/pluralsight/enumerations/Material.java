@@ -1,13 +1,15 @@
 package com.pluralsight.enumerations;
 
-public enum PremiumDesign {
-    RHINESTONE(1.2),
-    EMBROIDERY(2.0),
-    RAISED(1.5);
+public enum Material {
+    COTTON(1.0),
+    POLYESTER(1.0),
+    HEAVYWEIGHT(1.2),
+    FLEECE(1.5),
+    WOOL(2.0);
 
     private final double multiplier;
 
-    PremiumDesign(double multiplier) {
+    Material(double multiplier) {
         this.multiplier = multiplier;
     }
 

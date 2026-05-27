@@ -39,4 +39,22 @@ public class Hoodie extends OrderItem implements Priceable {
                 customization
         );
     }
+
+    public boolean removeDesign(Design design, DesignLocation location){
+        if (design == null || location == null) {
+            throw new IllegalArgumentException("Design and location weren't entered properly");
+        }
+
+        DesignCustomization target = designs.stream()
+                .filter(designCustomization -> designCustomization.getDesign() == design && designCustomization.getLocation() == location)
+                .findFirst()
+                .orElse(null);
+
+        if(target == null){
+            return false;
+        }
+
+        designs.remove(target);
+        return true;
+    }
 }

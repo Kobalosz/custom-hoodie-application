@@ -1,23 +1,24 @@
 package com.pluralsight.models;
 
+import com.pluralsight.DTOs.HoodieDTO;
 import com.pluralsight.abstracts.OrderItem;
 import com.pluralsight.enumerations.*;
 import com.pluralsight.interfaces.Priceable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public class Hoodie extends OrderItem implements Priceable {
     private Type type;
     private Size size;
-    private List<Material> materials = new ArrayList<>();
+    private Material material;
     private List<DesignCustomization> designs = new ArrayList<>();
 
-    public Hoodie(Type type, Size size, List<Material> materials, List<DesignCustomization> designs) {
+    public Hoodie(Type type, Size size, Material material, List<DesignCustomization> designs) {
         this.type = type;
         this.size = size;
-        this.materials = materials;
+        this.material = material;
         this.designs = designs;
     }
 
@@ -57,4 +58,18 @@ public class Hoodie extends OrderItem implements Priceable {
         designs.remove(target);
         return true;
     }
+    // If I want to replace a design I'll just use those two methods rather than creating a whole new one
+
+
+
+    public HoodieDTO getInfo(){
+        return new HoodieDTO(
+                type,
+                size,
+                material,
+                List.copyOf(designs),
+                getPrice()
+        );
+    }
+
 }

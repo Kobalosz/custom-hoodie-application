@@ -3,8 +3,10 @@ package com.pluralsight.views;
 import com.pluralsight.DTOs.HoodieDTO;
 import com.pluralsight.IO.UI;
 import com.pluralsight.enumerations.*;
+import com.pluralsight.models.Beanie;
 import com.pluralsight.models.Hoodie;
 import com.pluralsight.models.Order;
+import com.pluralsight.models.ToteBag;
 import com.pluralsight.storage.ReceiptWriter;
 
 import java.util.ArrayList;
@@ -246,22 +248,96 @@ public class OrderScreen {
 
     private void addBeanie() {
 
-        Display.showSuccess(
-                "Beanie added."
+        Material material =
+                UI.selectEnumWithConfirmation(
+                        Material.class
+                );
+
+        Beanie beanie =
+                new Beanie(material);
+
+        System.out.println();
+        System.out.println(
+                "1 - Add Design"
+        );
+        System.out.println(
+                "0 - Skip"
         );
 
-        // TODO:
-        // order.addItem(new Beanie());
+        Display.promptArrow();
+
+        String input =
+                UI.userInputString();
+
+        if (input.equals("1")) {
+
+            Design design =
+                    UI.selectEnumWithConfirmation(
+                            Design.class
+                    );
+
+            beanie.addDesign(
+                    design
+            );
+        }
+
+        Display.showSuccess(
+                "Beanie Preview"
+        );
+
+        System.out.println(
+                beanie.getDescription()
+        );
+
+        System.out.printf(
+                "$%.2f%n",
+                beanie.getPrice()
+        );
+
+        if (
+                UI.confirmChoice(
+                        "Add beanie to order?"
+                )
+        ) {
+
+            order.addItem(
+                    beanie
+            );
+
+            Display.showSuccess(
+                    "Beanie added!"
+            );
+        }
     }
 
     private void addToteBag() {
 
-        Display.showSuccess(
-                "Tote bag added."
+        ToteBag toteBag =
+                new ToteBag();
+
+        System.out.println(
+                toteBag.getDescription()
         );
 
-        // TODO:
-        // order.addItem(new ToteBag());
+        System.out.printf(
+                "$%.2f%n",
+                toteBag.getPrice()
+        );
+
+        if (
+                UI.confirmChoice(
+                        "Add tote bag to order?"
+                )
+        ) {
+
+            order.addItem(
+                    toteBag
+            );
+
+            Display.showSuccess(
+                    "Tote bag added!"
+            );
+        }
     }
 
     private void checkout() {

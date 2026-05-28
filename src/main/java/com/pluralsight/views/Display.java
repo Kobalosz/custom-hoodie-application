@@ -107,12 +107,12 @@ public class Display {
     }
 
 
-    // ───────────────────────────────────────────────
-    // Enum display helper
-    // ───────────────────────────────────────────────
+// helper function to make my use of enums actually work lol
 
     public static <T extends Enum<T>>
-    void showEnumOptions(Class<T> enumClass) {
+    void showEnumOptions(
+            Class<T> enumClass
+    ) {
 
         System.out.println(DIVIDER);
 
@@ -125,16 +125,23 @@ public class Display {
 
         System.out.println(DIVIDER);
 
-        int index = 1;
+        T[] options =
+                enumClass.getEnumConstants();
 
-        for (T value : enumClass.getEnumConstants()) {
+        for (int i = 0;
+             i < options.length;
+             i++) {
 
             System.out.printf(
                     "%s  [%d]%s %s%n",
+
                     Colors.CYAN,
-                    index++,
+                    i + 1,
                     Colors.WHITE,
-                    formatEnum(value.name())
+
+                    formatEnum(
+                            options[i].name()
+                    )
             );
         }
 
@@ -143,10 +150,6 @@ public class Display {
         promptArrow();
     }
 
-
-    // ───────────────────────────────────────────────
-    // Hoodie summary
-    // ───────────────────────────────────────────────
 
     public static void showHoodieSummary(
             HoodieDTO hoodie
@@ -243,9 +246,7 @@ public class Display {
     }
 
 
-    // ───────────────────────────────────────────────
-    // Prompts
-    // ───────────────────────────────────────────────
+// some prompt functions I can use to recieve input
 
     public static void prompt(
             String label
@@ -271,9 +272,7 @@ public class Display {
     }
 
 
-    // ───────────────────────────────────────────────
-    // Feedback
-    // ───────────────────────────────────────────────
+// Some response messages
 
     public static void showSuccess(
             String message
@@ -304,9 +303,7 @@ public class Display {
     }
 
 
-    // ───────────────────────────────────────────────
-    // Private helpers
-    // ───────────────────────────────────────────────
+// Helper functions
 
     private static void menuOption(
             String key,
@@ -374,6 +371,54 @@ public class Display {
         menuOption(
                 "0",
                 "Cancel Order",
+                Colors.RED
+        );
+
+        System.out.println(THIN_DIV);
+
+        promptArrow();
+    }
+
+    public static void showHoodieBuilderMenu() {
+
+        System.out.println(DIVIDER);
+
+        System.out.println(
+                Colors.bold(
+                        "  HOODIE BUILDER",
+                        Colors.YELLOW
+                )
+        );
+
+        System.out.println(DIVIDER);
+
+        menuOption(
+                "1",
+                "Add Design",
+                Colors.GREEN
+        );
+
+        menuOption(
+                "2",
+                "Remove Design",
+                Colors.RED
+        );
+
+        menuOption(
+                "3",
+                "Preview Hoodie",
+                Colors.CYAN
+        );
+
+        menuOption(
+                "4",
+                "Confirm Hoodie",
+                Colors.YELLOW
+        );
+
+        menuOption(
+                "0",
+                "Cancel",
                 Colors.RED
         );
 

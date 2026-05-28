@@ -5,6 +5,7 @@ import com.pluralsight.IO.UI;
 import com.pluralsight.enumerations.*;
 import com.pluralsight.models.Hoodie;
 import com.pluralsight.models.Order;
+import com.pluralsight.storage.ReceiptWriter;
 
 import java.util.ArrayList;
 
@@ -280,12 +281,21 @@ public class OrderScreen {
 
     private void checkout() {
 
-        Display.showSuccess(
-                "Generating receipt..."
+        Receipt receipt =
+                Receipt.fromOrder(
+                        order
+                );
+
+        ReceiptWriter.writeReceipt(
+                receipt
         );
 
-        // TODO:
-        // ReceiptScreen
-        // Receipt generation
+        System.out.println(
+                receipt.getFormattedReceipt()
+        );
+
+        Display.showSuccess(
+                "Receipt saved!"
+        );
     }
 }

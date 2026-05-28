@@ -78,7 +78,7 @@ public class Order {
     public String getDescription() {
 
         if (items.isEmpty()) {
-            return "No items in order.";
+            return "Sure hope you didn't just come to look.. because there's nothing here";
         }
 
         StringBuilder description =

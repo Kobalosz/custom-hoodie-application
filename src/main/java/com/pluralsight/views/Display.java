@@ -31,9 +31,9 @@ public class Display {
 
     public static void showAppHeader() {
 
-        System.out.println();
+        IO.println();
 
-        System.out.println(
+        IO.println(
                 Colors.BOLD + Colors.CYAN +
 
                         "  ╔════════════════════════════════════════════════════╗\n" +
@@ -53,7 +53,7 @@ public class Display {
                         + Colors.RESET
         );
 
-        System.out.println();
+        IO.println();
     }
 
 
@@ -63,45 +63,45 @@ public class Display {
 
     public static void showHomeMenu() {
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  MAIN MENU",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         menuOption("1", "Build Hoodie", Colors.CYAN);
         menuOption("2", "View Current Hoodie", Colors.GREEN);
         menuOption("3", "Save Hoodie", Colors.YELLOW);
         menuOption("X", "Exit", Colors.RED);
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         promptArrow();
     }
 
     public static void showDesignMenu() {
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  DESIGN MENU",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         menuOption("1", "Add Design", Colors.CYAN);
         menuOption("2", "Remove Design", Colors.RED);
         menuOption("H", "Back", Colors.YELLOW);
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         promptArrow();
     }
@@ -114,16 +114,16 @@ public class Display {
             Class<T> enumClass
     ) {
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  AVAILABLE OPTIONS",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         T[] options =
                 enumClass.getEnumConstants();
@@ -145,7 +145,7 @@ public class Display {
             );
         }
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         promptArrow();
     }
@@ -155,18 +155,18 @@ public class Display {
             HoodieDTO hoodie
     ) {
 
-        System.out.println();
+        IO.println();
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  HOODIE SUMMARY",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         System.out.printf(
                 "%s  Type:%s %s%n",
@@ -189,20 +189,20 @@ public class Display {
                 hoodie.material()
         );
 
-        System.out.println();
+        IO.println();
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  Designs",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         if (hoodie.designs().isEmpty()) {
 
-            System.out.println(
+            IO.println(
                     Colors.DIM
                             + "    No designs added."
                             + Colors.RESET
@@ -225,13 +225,13 @@ public class Display {
                         )
                 );
 
-                System.out.print(
+                IO.print(
                         Colors.RESET
                 );
             }
         }
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         System.out.printf(
                 "%s  TOTAL: $%.2f%s%n",
@@ -240,9 +240,9 @@ public class Display {
                 Colors.RESET
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println();
+        IO.println();
     }
 
 
@@ -252,7 +252,7 @@ public class Display {
             String label
     ) {
 
-        System.out.print(
+        IO.print(
                 Colors.CYAN
                         + "  "
                         + label
@@ -263,7 +263,7 @@ public class Display {
 
     public static void promptArrow() {
 
-        System.out.print(
+        IO.print(
                 Colors.BOLD
                         + Colors.YELLOW
                         + "  > "
@@ -278,28 +278,28 @@ public class Display {
             String message
     ) {
 
-        System.out.println();
-        System.out.println(
+        IO.println();
+        IO.println(
                 "  "
                         + Colors.success(
                         message
                 )
         );
-        System.out.println();
+        IO.println();
     }
 
     public static void showError(
             String message
     ) {
 
-        System.out.println();
-        System.out.println(
+        IO.println();
+        IO.println(
                 "  "
                         + Colors.error(
                         message
                 )
         );
-        System.out.println();
+        IO.println();
     }
 
 
@@ -311,7 +311,7 @@ public class Display {
             String color
     ) {
 
-        System.out.println(
+        IO.println(
                 color
                         + "  ["
                         + key
@@ -333,16 +333,16 @@ public class Display {
 
     public static void showOrderMenu() {
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  ORDER MENU",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         menuOption(
                 "1",
@@ -374,23 +374,23 @@ public class Display {
                 Colors.RED
         );
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         promptArrow();
     }
 
     public static void showHoodieBuilderMenu() {
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
-        System.out.println(
+        IO.println(
                 Colors.bold(
                         "  HOODIE BUILDER",
                         Colors.YELLOW
                 )
         );
 
-        System.out.println(DIVIDER);
+        IO.println(DIVIDER);
 
         menuOption(
                 "1",
@@ -422,8 +422,84 @@ public class Display {
                 Colors.RED
         );
 
-        System.out.println(THIN_DIV);
+        IO.println(THIN_DIV);
 
         promptArrow();
     }
+
+
+//    Here I'm creating that cool loading bar inspired by Nathan's project
+//    I think he did it by having his method take a number of stops and an amount of time, then printing a "bar" after that delay has passed
+//    Thankfully after playing around with threads this shouldn't be too crazy
+
+    public static void showLoadingSequence(
+            String title,
+            String... tasks
+    ) {
+
+        IO.println();
+
+        IO.println(
+                Colors.bold(
+                        "  " + title,
+                        Colors.CYAN
+                )
+        );
+
+        IO.println();
+
+        int totalSteps =
+                tasks.length;
+
+        for (int i = 0;
+             i < totalSteps;
+             i++) {
+
+            String task =
+                    tasks[i];
+
+            int percent =
+                    ((i + 1) * 100)
+                            / totalSteps;
+
+            String bar =
+                    "█".repeat(i + 1)
+                            + "░".repeat(
+                            totalSteps
+                                    - (i + 1)
+                    );
+
+            IO.print(
+                    "\r"
+                            + Colors.CYAN
+                            + "  "
+                            + task
+                            + " ["
+                            + bar
+                            + "] "
+                            + percent
+                            + "%"
+                            + Colors.RESET
+            );
+
+            try {
+
+                Thread.sleep(
+                        3000
+                );
+
+            } catch (
+                    InterruptedException e
+            ) {
+
+                Thread.currentThread()
+                        .interrupt();
+            }
+        }
+
+        IO.println();
+        IO.println();
+    }
+
+
 }

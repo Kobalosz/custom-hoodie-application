@@ -42,17 +42,17 @@ public class HomeScreen {
 
         Display.showAppHeader();
 
-        System.out.println(
+        IO.println(
                 "  "
                         + "1 - New Order"
         );
 
-        System.out.println(
+        IO.println(
                 "  "
                         + "0 - Exit"
         );
 
-        System.out.println();
+        IO.println();
 
         Display.promptArrow();
     }

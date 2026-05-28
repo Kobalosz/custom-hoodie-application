@@ -256,11 +256,11 @@ public class OrderScreen {
         Beanie beanie =
                 new Beanie(material);
 
-        System.out.println();
-        System.out.println(
+        IO.println();
+        IO.println(
                 "1 - Add Design"
         );
-        System.out.println(
+        IO.println(
                 "0 - Skip"
         );
 
@@ -285,7 +285,7 @@ public class OrderScreen {
                 "Beanie Preview"
         );
 
-        System.out.println(
+        IO.println(
                 beanie.getDescription()
         );
 
@@ -315,7 +315,7 @@ public class OrderScreen {
         ToteBag toteBag =
                 new ToteBag();
 
-        System.out.println(
+        IO.println(
                 toteBag.getDescription()
         );
 
@@ -342,6 +342,12 @@ public class OrderScreen {
 
     private void checkout() {
 
+        Display.showLoadingSequence(
+                "CHECKOUT",
+                "Calculating totals...",
+                "Bundling items...",
+                "Printing receipt..."
+        );
         Receipt receipt =
                 Receipt.fromOrder(
                         order

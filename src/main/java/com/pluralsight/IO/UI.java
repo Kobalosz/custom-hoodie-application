@@ -52,25 +52,38 @@ public class UI {
     public static <T extends Enum<T>>
     T userInputEnum(Class<T> enumClass) {
 
+        T[] options =
+                enumClass.getEnumConstants();
+
         while (true) {
 
-            String input = scanner.nextLine()
-                    .strip()
-                    .toUpperCase();
-
             try {
-                return Enum.valueOf(
-                        enumClass,
-                        input
-                );
 
-            } catch (IllegalArgumentException e) {
+                int choice =
+                        Integer.parseInt(
+                                scanner.nextLine()
+                                        .strip()
+                        );
+
+                if (choice >= 1
+                        && choice <= options.length) {
+
+                    return options[
+                            choice - 1
+                            ];
+                }
 
                 Display.showError(
-                        "Invalid selection."
+                        "Please select a valid option."
                 );
 
-                Display.showEnumOptions(enumClass);
+            } catch (
+                    NumberFormatException e
+            ) {
+
+                Display.showError(
+                        "Please enter a number."
+                );
             }
         }
     }

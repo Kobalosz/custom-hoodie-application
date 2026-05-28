@@ -72,4 +72,31 @@ public class Hoodie extends OrderItem implements Priceable {
         );
     }
 
+    @Override
+    public String getDescription() {
+        String hoodieDesigns = designs.isEmpty() ? "No Designs" : designs.stream()
+                                                                  .map(d-> d.getDesign() + " (" + d.getLocation() + ")")
+                                                                  .reduce((a,b)-> a + ", " + b).orElse("");
+        return String.format(
+                "%s %s %s Hoodie | %s",
+                size,
+                material,
+                type,
+                hoodieDesigns
+        );
+    }
+
+    @Override
+    public double getPrice() {
+
+        double basePrice = size.getPrice() * material.getMultiplier();
+
+        double designCost = designs.stream().mapToDouble(designCustomization -> {
+            double designPrice = size.getPrice() * 0.25 * designCustomization.getDesign().getMultiplier();
+            return designPrice;
+        }).sum();
+
+        return basePrice + designCost;
+    }
+    // Finish building out the Order (Contains all order details), Build out my UI class,
 }

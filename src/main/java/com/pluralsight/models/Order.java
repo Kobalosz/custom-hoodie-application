@@ -69,6 +69,10 @@ public class Order {
                 .sum();
     }
 
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
 // just a formatted output of the order
 
     public String getDescription() {

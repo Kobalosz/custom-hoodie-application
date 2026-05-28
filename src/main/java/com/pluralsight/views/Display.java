@@ -6,10 +6,7 @@ import com.pluralsight.util.Colors;
 
 public class Display {
 
-    // ───────────────────────────────────────────────
-    // Shared formatting
-    // ───────────────────────────────────────────────
-
+// this is the general formatting
     private static final int WIDTH = 52;
 
     private static final String DIVIDER =
@@ -24,10 +21,6 @@ public class Display {
                     + "─".repeat(WIDTH)
                     + Colors.RESET;
 
-
-    // ───────────────────────────────────────────────
-    // Application header
-    // ───────────────────────────────────────────────
 
     public static void showAppHeader() {
 
@@ -55,57 +48,6 @@ public class Display {
 
         IO.println();
     }
-
-
-    // ───────────────────────────────────────────────
-    // Menus
-    // ───────────────────────────────────────────────
-
-    public static void showHomeMenu() {
-
-        IO.println(DIVIDER);
-
-        IO.println(
-                Colors.bold(
-                        "  MAIN MENU",
-                        Colors.YELLOW
-                )
-        );
-
-        IO.println(DIVIDER);
-
-        menuOption("1", "Build Hoodie", Colors.CYAN);
-        menuOption("2", "View Current Hoodie", Colors.GREEN);
-        menuOption("3", "Save Hoodie", Colors.YELLOW);
-        menuOption("X", "Exit", Colors.RED);
-
-        IO.println(THIN_DIV);
-
-        promptArrow();
-    }
-
-    public static void showDesignMenu() {
-
-        IO.println(DIVIDER);
-
-        IO.println(
-                Colors.bold(
-                        "  DESIGN MENU",
-                        Colors.YELLOW
-                )
-        );
-
-        IO.println(DIVIDER);
-
-        menuOption("1", "Add Design", Colors.CYAN);
-        menuOption("2", "Remove Design", Colors.RED);
-        menuOption("H", "Back", Colors.YELLOW);
-
-        IO.println(THIN_DIV);
-
-        promptArrow();
-    }
-
 
 // helper function to make my use of enums actually work lol
 
@@ -246,21 +188,7 @@ public class Display {
     }
 
 
-// some prompt functions I can use to recieve input
-
-    public static void prompt(
-            String label
-    ) {
-
-        IO.print(
-                Colors.CYAN
-                        + "  "
-                        + label
-                        + ": "
-                        + Colors.RESET
-        );
-    }
-
+// My prompt function I can use to recieve input
     public static void promptArrow() {
 
         IO.print(
@@ -375,6 +303,90 @@ public class Display {
         );
 
         IO.println(THIN_DIV);
+
+        promptArrow();
+    }
+
+    public static void showHoodieChoiceMenu() {
+
+        System.out.println(DIVIDER);
+
+        System.out.println(
+                Colors.bold(
+                        "  HOODIE OPTIONS",
+                        Colors.YELLOW
+                )
+        );
+
+        System.out.println(DIVIDER);
+
+        menuOption(
+                "1",
+                "Prebuilt Hoodies",
+                Colors.CYAN
+        );
+
+        menuOption(
+                "2",
+                "Custom Hoodie",
+                Colors.GREEN
+        );
+
+        menuOption(
+                "0",
+                "Back",
+                Colors.RED
+        );
+
+        System.out.println(THIN_DIV);
+
+        promptArrow();
+    }
+
+    public static void showPresetHoodieMenu() {
+
+        System.out.println(DIVIDER);
+
+        System.out.println(
+                Colors.bold(
+                        "  PREBUILT HOODIES",
+                        Colors.YELLOW
+                )
+        );
+
+        System.out.println(DIVIDER);
+
+        menuOption(
+                "1",
+                "Classic Pullover",
+                Colors.CYAN
+        );
+
+        menuOption(
+                "2",
+                "Premium Streetwear",
+                Colors.GREEN
+        );
+
+        menuOption(
+                "3",
+                "Winter Heavyweight",
+                Colors.YELLOW
+        );
+
+        menuOption(
+                "4",
+                "Luxury Edition",
+                Colors.CYAN
+        );
+
+        menuOption(
+                "0",
+                "Back",
+                Colors.RED
+        );
+
+        System.out.println(THIN_DIV);
 
         promptArrow();
     }

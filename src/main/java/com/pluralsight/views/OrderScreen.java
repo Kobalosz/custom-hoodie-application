@@ -3,10 +3,7 @@ package com.pluralsight.views;
 import com.pluralsight.DTOs.HoodieDTO;
 import com.pluralsight.IO.UI;
 import com.pluralsight.enumerations.*;
-import com.pluralsight.models.Beanie;
-import com.pluralsight.models.Hoodie;
-import com.pluralsight.models.Order;
-import com.pluralsight.models.ToteBag;
+import com.pluralsight.models.*;
 import com.pluralsight.storage.ReceiptWriter;
 
 import java.util.ArrayList;
@@ -60,6 +57,41 @@ public class OrderScreen {
 
     private void addHoodie() {
 
+        boolean choosing =
+                true;
+
+        while (choosing) {
+
+            Display.showHoodieChoiceMenu();
+
+            String input =
+                    UI.userInputString();
+
+            switch (input) {
+
+                case "1" -> {
+
+                    addPresetHoodie();
+                    choosing = false;
+                }
+
+                case "2" -> {
+
+                    launchCustomHoodieBuilder();
+                    choosing = false;
+                }
+
+                case "0" -> choosing = false;
+
+                default ->
+                        Display.showError(
+                                "Invalid option."
+                        );
+            }
+        }
+    }
+
+    private void launchCustomHoodieBuilder(){
         Display.showSuccess(
                 "Launching hoodie builder..."
         );
@@ -143,6 +175,62 @@ public class OrderScreen {
             }
         }
 
+    }
+
+    // Preset hoodies
+
+    private void addPresetHoodie() {
+
+        Display.showPresetHoodieMenu();
+
+        String input =
+                UI.userInputString();
+
+        Hoodie hoodie =
+                switch (input) {
+
+                    case "1" ->
+                            HoodiePresets
+                                    .classicPullover();
+
+                    case "2" ->
+                            HoodiePresets
+                                    .premiumStreetwear();
+
+                    case "3" ->
+                            HoodiePresets
+                                    .winterHeavyweight();
+
+                    case "4" ->
+                            HoodiePresets
+                                    .luxuryEdition();
+
+                    default -> null;
+                };
+
+        if (hoodie == null) {
+
+            Display.showError(
+                    "Invalid selection."
+            );
+
+            return;
+        }
+
+        Display.showHoodieSummary(
+                hoodie.getInfo()
+        );
+
+        if (
+                UI.confirmChoice(
+                        "Add hoodie to order?"
+                )
+        ) {
+
+            confirmHoodie(
+                    hoodie
+            );
+        }
     }
 
     private void addDesign(

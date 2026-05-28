@@ -62,30 +62,19 @@ public class OrderScreen {
                 "Launching hoodie builder..."
         );
 
-        Display.showEnumOptions(
-                Type.class
-        );
-
         Type type =
-                UI.userInputEnum(
+                UI.selectEnumWithConfirmation(
                         Type.class
                 );
 
-        Display.showEnumOptions(
-                Size.class
-        );
 
         Size size =
-                UI.userInputEnum(
+                UI.selectEnumWithConfirmation(
                         Size.class
                 );
 
-        Display.showEnumOptions(
-                Material.class
-        );
-
         Material material =
-                UI.userInputEnum(
+                UI.selectEnumWithConfirmation(
                         Material.class
                 );
 
@@ -165,7 +154,7 @@ public class OrderScreen {
             );
 
             Design design =
-                    UI.userInputEnum(
+                    UI.selectEnumWithConfirmation(
                             Design.class
                     );
 
@@ -174,7 +163,7 @@ public class OrderScreen {
             );
 
             DesignLocation location =
-                    UI.userInputEnum(
+                    UI.selectEnumWithConfirmation(
                             DesignLocation.class
                     );
 
@@ -206,7 +195,7 @@ public class OrderScreen {
         );
 
         Design design =
-                UI.userInputEnum(
+                UI.selectEnumWithConfirmation(
                         Design.class
                 );
 
@@ -215,7 +204,7 @@ public class OrderScreen {
         );
 
         DesignLocation location =
-                UI.userInputEnum(
+                UI.selectEnumWithConfirmation(
                         DesignLocation.class
                 );
 
@@ -243,20 +232,16 @@ public class OrderScreen {
     private void confirmHoodie(
             Hoodie hoodie
     ) {
+        if(hoodie == null){
+            Display.showError("Something went wrong!");
+            return;
+        }
 
-        HoodieDTO dto =
-                hoodie.getInfo();
+        order.addItem(hoodie);
 
-        order.addItem(
-                hoodie
-        );
+        Display.showHoodieSummary(hoodie.getInfo());
 
-        // TODO:
-        // receiptItems.add(dto);
-
-        Display.showSuccess(
-                "Hoodie added to order!"
-        );
+        Display.showSuccess("Your hoodie has been added to the order!");
     }
 
     private void addBeanie() {

@@ -54,14 +54,14 @@ public class ReceiptWriter {
                 writer.newLine();
 
                 writer.write(
-                        "Date,"
+                        "Date|"
                                 + receipt.createdAt()
                 );
 
                 writer.newLine();
 
                 writer.write(
-                        "Total,"
+                        "Total|"
                                 + String.format(
                                 "%.2f",
                                 receipt.total()
@@ -87,9 +87,7 @@ public class ReceiptWriter {
                 ) {
 
                     writer.write(
-                            escapeCsv(
-                                    item.description()
-                            )
+                            item.description()
                                     + "|"
                                     + String.format(
                                     "%.2f",
@@ -111,27 +109,5 @@ public class ReceiptWriter {
     }
 
 
-    // ────────────────────────────
-    // CSV escaping
-    // ────────────────────────────
 
-    private static String escapeCsv(
-            String text
-    ) {
-
-        if (
-                text.contains("|")
-                        || text.contains("\"")
-        ) {
-
-            return "\""
-                    + text.replace(
-                    "\"",
-                    "\"\""
-            )
-                    + "\"";
-        }
-
-        return text;
-    }
 }

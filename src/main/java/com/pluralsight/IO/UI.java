@@ -15,39 +15,46 @@ public class UI {
                 .toLowerCase();
     }
 
-    public static double userInputDouble() {
 
-        try {
-            return Double.parseDouble(
-                    scanner.nextLine().strip()
+    public static <T extends Enum<T>>
+    T selectEnumWithConfirmation(
+            Class<T> enumClass
+    ) {
+
+        while (true) {
+
+            Display.showEnumOptions(
+                    enumClass
             );
 
-        } catch (NumberFormatException e) {
+            T selection =
+                    userInputEnum(
+                            enumClass
+                    );
 
-            Display.showError(
-                    "Invalid response, enter a number."
-            );
+            boolean confirmed =
+                    confirmChoice(
+                            formatEnum(
+                                    selection.name()
+                            )
+                    );
 
-            return userInputDouble();
+            if (confirmed) {
+                return selection;
+            }
         }
     }
 
-    public static int userInputInt() {
 
-        try {
-            return Integer.parseInt(
-                    scanner.nextLine().strip()
-            );
+    private static String formatEnum(
+            String text
+    ) {
 
-        } catch (NumberFormatException e) {
-
-            Display.showError(
-                    "Invalid response, enter a number."
-            );
-
-            return userInputInt();
-        }
+        return text
+                .toLowerCase()
+                .replace("_", " ");
     }
+
 
     public static <T extends Enum<T>>
     T userInputEnum(Class<T> enumClass) {
@@ -84,6 +91,49 @@ public class UI {
                 Display.showError(
                         "Please enter a number."
                 );
+            }
+        }
+    }
+
+    public static boolean confirmChoice(
+            String selection
+    ) {
+
+        while (true) {
+
+            System.out.println();
+            System.out.println(
+                    "Selected: "
+                            + selection
+            );
+
+            System.out.println(
+                    "1 - Confirm"
+            );
+
+            System.out.println(
+                    "0 - Re-select"
+            );
+
+            Display.promptArrow();
+
+            String input =
+                    userInputString();
+
+            switch (input) {
+
+                case "1" -> {
+                    return true;
+                }
+
+                case "0" -> {
+                    return false;
+                }
+
+                default ->
+                        Display.showError(
+                                "Invalid option."
+                        );
             }
         }
     }

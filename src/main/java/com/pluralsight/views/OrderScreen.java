@@ -430,12 +430,22 @@ public class OrderScreen {
 
     private void checkout() {
 
+        if (order.isEmpty()) {
+
+            Display.showError(
+                    "Why'd you come here if you can't afford anything brokie? This isn't a charity."
+            );
+
+            return;
+        }
+
         Display.showLoadingSequence(
                 "CHECKOUT",
                 "Calculating totals...",
                 "Bundling items...",
                 "Printing receipt..."
         );
+
         Receipt receipt =
                 Receipt.fromOrder(
                         order

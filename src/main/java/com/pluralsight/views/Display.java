@@ -272,18 +272,57 @@ public class Display {
 
         System.out.println(DIVIDER);
 
-        menuOption("1", "Add Hoodie", Colors.CYAN);
-        menuOption("2", "Add Beanie", Colors.CYAN);
-        menuOption("3", "Add Tote Bag", Colors.CYAN);
+        menuOption(
+                "1",
+                "Add Hoodie",
+                Colors.CYAN
+        );
 
-        menuOption("4", "View Order", Colors.GREEN);
-        menuOption("5", "Remove Item", Colors.YELLOW);
-        menuOption("6", "Clear Order", Colors.RED);
+        menuOption(
+                "2",
+                "Add Beanie",
+                Colors.CYAN
+        );
 
-        menuOption("7", "Checkout", Colors.CYAN);
-        menuOption("0", "Cancel Order", Colors.RED);
+        menuOption(
+                "3",
+                "Add Tote Bag",
+                Colors.CYAN
+        );
 
-        System.out.println(THIN_DIV);
+        menuOption(
+                "4",
+                "View Order",
+                Colors.GREEN
+        );
+
+        menuOption(
+                "5",
+                "Remove Item",
+                Colors.YELLOW
+        );
+
+        menuOption(
+                "6",
+                "Clear Order",
+                Colors.RED
+        );
+
+        menuOption(
+                "7",
+                "Checkout",
+                Colors.CYAN
+        );
+
+        menuOption(
+                "0",
+                "Cancel Order",
+                Colors.RED
+        );
+
+        System.out.println(
+                THIN_DIV
+        );
 
         promptArrow();
     }

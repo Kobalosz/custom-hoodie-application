@@ -2,11 +2,13 @@ package com.pluralsight.views;
 
 import com.pluralsight.DTOs.HoodieDTO;
 import com.pluralsight.IO.UI;
+import com.pluralsight.abstracts.OrderItem;
 import com.pluralsight.enumerations.*;
 import com.pluralsight.models.*;
 import com.pluralsight.storage.ReceiptWriter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.pluralsight.views.Display.showHoodieBuilderMenu;
 
@@ -32,7 +34,13 @@ public class OrderScreen {
 
                 case "3" -> addToteBag();
 
-                case "4" -> {
+                case "4" -> viewOrder();
+
+                case "5" -> removeItem();
+
+                case "6" -> clearOrder();
+
+                case "7" -> {
 
                     checkout();
 
@@ -48,9 +56,10 @@ public class OrderScreen {
                     ordering = false;
                 }
 
-                default -> Display.showError(
-                        "Invalid option."
-                );
+                default ->
+                        Display.showError(
+                                "Invalid option."
+                        );
             }
         }
     }
@@ -426,6 +435,126 @@ public class OrderScreen {
                     "Tote bag added!"
             );
         }
+    }
+
+    //
+
+    private void viewOrder() {
+
+        System.out.println();
+
+        System.out.println(
+                order.getDescription()
+        );
+
+        System.out.println();
+    }
+
+    private void removeItem() {
+
+        if (order.isEmpty()) {
+
+            Display.showError(
+                    "Nothing to remove."
+            );
+
+            return;
+        }
+
+        List<OrderItem> items =
+                order.getItems();
+
+        System.out.println();
+        System.out.println(
+                "REMOVE ITEM"
+        );
+        System.out.println();
+
+        for (int i = 0;
+             i < items.size();
+             i++) {
+
+            OrderItem item =
+                    items.get(i);
+
+            System.out.printf(
+                    "%d - %s ($%.2f)%n",
+
+                    i + 1,
+
+                    item.getDescription(),
+
+                    item.getPrice()
+            );
+        }
+
+        System.out.println();
+        System.out.println(
+                "0 - Cancel"
+        );
+
+        String input =
+                UI.userInputString();
+
+        try {
+
+            int choice =
+                    Integer.parseInt(
+                            input
+                    );
+
+            if (choice == 0) {
+                return;
+            }
+
+            OrderItem selected =
+                    items.get(
+                            choice - 1
+                    );
+
+            order.removeItem(
+                    selected
+            );
+
+            Display.showSuccess(
+                    "Item removed."
+            );
+
+        } catch (
+                Exception e
+        ) {
+
+            Display.showError(
+                    "Invalid selection."
+            );
+        }
+    }
+
+    private void clearOrder() {
+
+        if (order.isEmpty()) {
+
+            Display.showError(
+                    "Order already empty."
+            );
+
+            return;
+        }
+
+        boolean confirmed =
+                UI.confirmChoice(
+                        "Clear order?"
+                );
+
+        if (!confirmed) {
+            return;
+        }
+
+        order.clear();
+
+        Display.showSuccess(
+                "Order cleared."
+        );
     }
 
     private void checkout() {

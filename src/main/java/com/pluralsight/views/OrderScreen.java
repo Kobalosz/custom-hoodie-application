@@ -257,10 +257,6 @@ public class OrderScreen {
                             Design.class
                     );
 
-            Display.showEnumOptions(
-                    DesignLocation.class
-            );
-
             DesignLocation location =
                     UI.selectEnumWithConfirmation(
                             DesignLocation.class
